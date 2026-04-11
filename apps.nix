@@ -5,6 +5,7 @@
   # programs.firefox.enable = true;
     programs.chromium.enable = true;
     programs.thunar.enable = true;
+    programs.git.enable = true;
     programs.thunar.plugins = with pkgs; [
 	xfce.thunar-volman
 	xfce.thunar-archive-plugin

@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./apps.nix
     ];
 
   # Use the GRUB 2 boot loader.
@@ -18,7 +19,7 @@
   # Define on which hard drive you want to install Grub.
    boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
 
-   networking.hostName = "compaq"; # Define your hostname.
+   networking.hostName = "dvd-player"; # Define your hostname.
 
   # Configure network connections interactively with nmcli or nmtui.
   networking.networkmanager.enable = true;
@@ -33,7 +34,7 @@
   # Select internationalisation properties.
    i18n.defaultLocale = "en_US.UTF-8";
    console = {
-     font = "Lat2-Terminus16";
+   #  font = "Lat2-Terminus16";
    #  keyMap = "trq";
      useXkbConfig = true; # use xkb.options in tty.
    };
@@ -73,38 +74,7 @@
      ];
    };
 
-  # programs.firefox.enable = true;
-    programs.chromium.enable = true;
-    programs.thunar.enable = true;
-    programs.thunar.plugins = with pkgs; [
-	xfce.thunar-volman
-	xfce.thunar-archive-plugin
-	xfce.thunar-media-tags-plugin
-    ];
 
-
-  # List packages installed in system profile.
-  # You can use https://search.nixos.org/ to find more packages (and options).
-   environment.systemPackages = with pkgs; [
-   	vim
-	kdePackages.kate
-	wget
-#	thunar
-#	xfce.thunar-volman
-#	thunar-archive-plugin
-#	thunar-media-tags-plugin
-	xfce.tumbler
-	gvfs
-	ffmpeg
-	vlc
-	fastfetch
-	openbox
-	obconf
-	xterm
-	xorg.xinit
-	neovim
-	chromium
-   ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

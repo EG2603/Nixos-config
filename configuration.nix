@@ -102,7 +102,7 @@ fi
 "$twm" &
     python ~/AeroDVDMenu/api.py &
     xwallpaper --center ~/bg-empty.png
-    /home/ege/startmenu.sh &
+    ~/startmenu.sh &
 exec openbox
 '';
 

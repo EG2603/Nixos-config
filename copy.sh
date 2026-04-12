@@ -5,6 +5,8 @@ git clone https://github.com/grassmunk/Chicago95.git
 git clone https://github.com/B00merang-Project/Windows-Vista.git
 git clone https://github.com/dangvd/crystal-remix-icon-theme.git
 #------------------------------------------------------
+sudo mkdir /usr/share/themes
+sudo mkdir /usr/share/icons
 sudo cp -r crystal-remix-icon-theme /usr/share/icons
 sudo cp -r Windows-Vista /usr/share/themes
 sudo cp -r Chicago95/Theme/Chicago95 /usr/share/themes

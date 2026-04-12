@@ -34,7 +34,7 @@
 	xorg.xinit
 	neovim
 	chromium
-	python
+	python3
 	xwallpaper
    ];
 

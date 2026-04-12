@@ -1,0 +1,237 @@
+<html>
+<head>
+    
+    <title>Main Menu</title>
+    <link rel="stylesheet" href="dvdstyle.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./res/mii.png">
+    <meta charset="UTF-8">
+    <script>
+        function showElement() {
+           document.getElementById("win7-window").style.display = "block";
+        }
+        function hideElement() {
+            document.getElementById("win7-window").style.display = "none";
+        }
+        </script>
+</head>
+<body>
+<div id="clock">never gonna give you up</div>
+
+<div id="selected-text">Play DVD</div>
+
+    <div id="menu" style="position: absolute; top: 612; left: 120;">
+        <img class="menu-item" data-action="dvdvideo" src="dvd_res/media-optical-dvd-video.png" onclick="launch('vlc dvd:///dev/sr0 --fullscreen')">
+        <img class="menu-item" data-action="cdaudio" src="dvd_res/media-optical-audio.png" style="margin-left: 95;" onclick="launch('vlc cdda:///dev/sr0')">
+        <img class="menu-item" data-action="retroarch" src="dvd_res/retroarch.webp" style="margin-left: 95;" onclick="launch('retroarch')">
+        <img class="menu-item" data-action="moonlight" src="dvd_res/moonlight-aero.png" style="margin-left: 97;" onclick="launch('moonlight')">
+        <img class="menu-item" data-action="next-page" src="dvd_res/arrow-right.png" style="margin-left: 100;">
+    </div>
+
+
+    <div id="slideBox"><div id="win7-window" class="aero-content"><div id="border-gap-30"><div id="window">
+        <span style="font-size: 25;">Power Options:</span>
+        <div class="power-menu-item" data-action="scrsave"><img src="dvd_res/system-switch-user.png" style="height: 28; vertical-align: middle; margin-right: 5; padding-left: 4;">Screensaver</div>
+        <div class="power-menu-item" data-action="suspend"><img src="dvd_res/media-playback-pause.png" style="height: 28; vertical-align: middle; margin-right: 5; padding-left: 4;">Sleep Mode</div>
+        <div class="power-menu-item" data-action="reboot"><img src="dvd_res/system-reboot.png" style="height: 28; vertical-align: middle; margin-right: 5; padding-left: 4;">Restart</div>
+        <div class="power-menu-item" data-action="poweroff"><img src="dvd_res/system-shutdown.png" style="height: 28; vertical-align: middle; margin-right: 5; padding-left: 4;">Shut Down</div>
+    </div></div></div></div>
+
+
+
+  <script>
+    async function launch(cmd) {
+      await fetch('http://localhost:8899/run?cmd=' + encodeURIComponent(cmd));
+    }
+  </script>
+      <script>
+	function updateClock() {
+    	const now = new Date();
+    	const hours = String(now.getHours()).padStart(2, '0');
+    	const minutes = String(now.getMinutes()).padStart(2, '0');
+
+		let colon = now.getSeconds() % 2 === 0 ? ":" : "<span class='blink'>:</span>";
+
+    	document.getElementById('clock').innerHTML = `${hours}${colon}${minutes}`;
+		}
+
+    	updateClock();                   // set immediately
+    	setInterval(updateClock, 1000);  // update every second
+    </script>
+	<script>
+		function setText(text) {
+		document.getElementById('selected-text').textContent = text;
+		}
+	</script>
+<script>
+let selectedIndex = 0;
+let powerMenuIndex = 0;
+let mode = 0;
+let lowertextcontrols = 0;
+
+function updateMenuHighlight() {
+    const items = document.querySelectorAll(".menu-item");
+    const pitems = document.querySelectorAll(".power-menu-item");
+
+    items.forEach((item, index) => {
+        item.classList.toggle("selected", index === selectedIndex);
+    });
+    pitems.forEach((pitem, pindex) => {
+        pitem.classList.toggle("selected", pindex === powerMenuIndex);
+    });
+}
+
+document.addEventListener("keydown", (event) => {
+    const items = document.querySelectorAll(".menu-item");
+    const pitems = document.querySelectorAll(".power-menu-item");
+
+
+    if (event.key === "Escape") {
+        if (mode === 0) {
+        mode = 1;
+        document.getElementById("slideBox").classList.add("visible");
+        document.getElementById("clock").classList.add("raised");
+        document.getElementById("selected-text").classList.add("lowered");
+        setTimeout(function() {
+            lowertextcontrols = 1;
+            const action = pitems[powerMenuIndex].dataset.action;
+            switch (action) {
+            case "scrsave":
+                setText('Start The DVD Logo Screensaver');
+                break;
+            case "suspend":
+                setText('Make the pc eepy');
+                break;
+            case "reboot":
+                setText('Restart The PC');
+                break;
+            case "poweroff":
+                setText('Shut Down The PC');
+                break;
+            }
+        }, 500)
+        } else {
+        lowertextcontrols = 0;
+        mode = 0;
+            document.getElementById("slideBox").classList.remove("visible");
+            document.getElementById("clock").classList.remove("raised");
+            document.getElementById("selected-text").classList.remove("lowered");
+        }
+        updateMenuHighlight();
+    }
+
+    if (event.key === "ArrowRight") {
+        if (mode === 0) {
+        selectedIndex = (selectedIndex + 1) % items.length;
+        updateMenuHighlight();
+        }
+    }
+
+    if (event.key === "ArrowLeft") {
+        if (mode === 0) {
+        selectedIndex = (selectedIndex - 1 + items.length) % items.length;
+        updateMenuHighlight();
+        }
+    }
+        if (event.key === "ArrowDown") {
+        if (mode === 1) {
+        powerMenuIndex = (powerMenuIndex + 1) % pitems.length;
+        updateMenuHighlight();
+        }
+    }
+
+    if (event.key === "ArrowUp") {
+        if (mode === 1) {
+        powerMenuIndex = (powerMenuIndex - 1 + pitems.length) % pitems.length;
+        updateMenuHighlight();
+        }
+    }
+
+    if (event.key === "Enter") {
+        if (mode === 0) {
+        const action = items[selectedIndex].dataset.action;
+        
+        // Handle the selected action
+        switch (action) {
+            case "dvdvideo":
+                launch('vlc dvd:///dev/sr0 --fullscreen');
+                break;
+            case "cdaudio":
+                launch('vlc cdda:///dev/sr0');
+                break;
+            case "retroarch":
+                launch('retroarch');
+                break;
+            case "moonlight":
+                launch('moonlight');
+                break;
+            case "next-page":
+                location.replace("page2.html")
+                break;
+            }
+        } else { 
+            const action = pitems[powerMenuIndex].dataset.action;
+            switch (action) {
+            case "scrsave":
+                launch('bash /home/ege/startss.sh');
+                break;
+            case "suspend":
+                launch('systemctl suspend');
+                break;
+            case "reboot":
+                launch('reboot');
+                break;
+            case "poweroff":
+                launch('poweroff');
+                break;
+            }
+        }
+    }
+			const action = items[selectedIndex].dataset.action;
+
+            if (mode === 0) {
+		    switch (action) {
+            case "dvdvideo":
+                setText('Play DVD');
+                break;
+            case "cdaudio":
+                setText('Play CD');
+                break;
+            case "retroarch":
+                setText('Retroarch');
+                break;
+            case "moonlight":
+                setText('Moonlight');
+                break;
+            case "next-page":
+                setText('Next Page');
+                break;
+            }
+        } else {
+            if (lowertextcontrols === 1) {
+            const action = pitems[powerMenuIndex].dataset.action;
+            switch (action) {
+            case "scrsave":
+                setText('Start The DVD Logo Screensaver');
+                break;
+            case "suspend":
+                setText('Make the pc eepy');
+                break;
+            case "reboot":
+                setText('Restart The PC');
+                break;
+            case "poweroff":
+                setText('Shut Down The PC');
+                break;
+            }
+        }
+        }
+});
+
+
+updateMenuHighlight();
+updateText();
+</script>
+
+</body>
+</html>

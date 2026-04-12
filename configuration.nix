@@ -100,9 +100,9 @@ if [ -d "$xinitdir"/xinitrc.d ] ; then
 fi
 
 "$twm" &
-#    python ~/AeroDVDMenu/api.py &
-#    xwallpaper --center ~/bg-empty.png
-#    /home/ege/startmenu.sh &
+    python ~/AeroDVDMenu/api.py &
+    xwallpaper --center ~/bg-empty.png
+    /home/ege/startmenu.sh &
 exec openbox
 '';
 

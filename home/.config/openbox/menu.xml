@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openbox_menu>
+    <menu id="root-menu" label="OpenBox 3">
+        <separator label="Editors" />
+            <item label="Kate"> <action name="Execute">
+                    <execute>kate</execute>
+                </action> </item>
+            <item label="KWrite"> <action name="Execute">
+                <execute>kwrite</execute>
+            </action> </item>
+    <separator label="Games" />
+    <item label="RetroArch"> <action name="Execute">
+            <execute>retroarch</execute>
+            </action> </item>
+    <item label="Moonlight"> <action name="Execute">
+            <execute>moonlight</execute>
+            </action> </item>
+    <separator label="The purpose of this computer" />
+            <item label="VLC"> <action name="Execute">
+                <execute>vlc</execute>
+            </action> </item>
+    <separator label="The Internet (mostly unnessecary)" />
+    <item label="Chromium"> <action name="Execute">
+            <execute>chromium</execute>
+            </action> </item>
+    <item label="Chromium (unsafe mode)"> <action name="Execute">
+            <execute>chromium --user-data-dir="~/chrome-dev-disabled-security" --disable-web-security</execute>
+            </action> </item>
+    <separator label="System" />
+            <item label="DVD Player Menu"> <action name="Execute">
+                <execute>/home/ege/startmenu.sh</execute>
+            </action> </item>
+            <item label="Bouncing DVD Logo"> <action name="Execute">
+                    <execute>/home/ege/startss.sh</execute>
+            </action> </item>
+            <item label="Thunar"> <action name="Execute">
+                <execute>thunar</execute>
+            </action> </item>
+            <item label="Xterm"> <action name="Execute">
+                <execute>xterm</execute>
+            </action> </item>
+    <separator/>
+        <menu id="37" label="Settings">
+                <item label="Openbox Settings"> <action name="Execute">
+                    <execute>obconf-qt</execute>
+                </action> </item>
+                <item label="Removable Drives and Media"> <action name="Execute">
+                    <execute>thunar-volman-settings</execute>
+                </action> </item>
+                <item label="Thunar Preferences"> <action name="Execute">
+                    <execute>thunar-settings</execute>
+                </action> </item>
+                <item label="LXDE Theme Settings"> <action name="Execute">
+                    <execute>lxappearance</execute>
+                </action> </item>
+        </menu>
+        <menu id="38" label="Utilities">
+            <item label="About Xfce"> <action name="Execute">
+                <execute>xfce4-about</execute>
+            </action> </item>
+            <item label="Info"> <action name="Execute">
+                <execute>xterm -e info</execute>
+            </action> </item>
+            <item label="Xev"> <action name="Execute">
+                <execute>xterm -e xev</execute>
+            </action> </item>
+            <item label="Xkill"> <action name="Execute">
+                <execute>xkill</execute>
+            </action> </item>
+            <item label="Xrefresh"> <action name="Execute">
+                <execute>xrefresh</execute>
+            </action> </item>
+            <item label="Xsetroot"> <action name="Execute">
+                <execute>xsetroot</execute>
+            </action> </item>
+        </menu>
+        <menu id="40" label="OpenBox">
+            <menu id="client-list-menu"/>
+            <item label="Reconfigure"> <action name="Reconfigure"/> </item>
+            <separator/>
+            <item label="Exit"> <action name="Exit"/> </item>
+        </menu>
+        <separator/>
+        <item label="eepy"> <action name="Execute">
+                <execute>systemctl suspend</execute>
+                </action> </item>
+        <item label="Reboot"> <action name="Execute">
+                <execute>reboot</execute>
+                </action> </item>
+        <item label="Poweroff"> <action name="Execute">
+                <execute>poweroff</execute>
+                </action> </item>
+    </menu>
+</openbox_menu>

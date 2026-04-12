@@ -1,0 +1,23 @@
+"~/startmenu.sh"
+    XF86HomePage
+
+"chromium"
+    XF86Search
+
+"retroarch"
+    XF86Calculator
+
+"vlc"
+    XF86Mail
+
+"eject"
+    XF86Eject
+
+"moonlight"
+    XF86Favorites
+
+"~/startss.sh"
+    XF86ScreenSaver
+
+"thunar"
+    Pause

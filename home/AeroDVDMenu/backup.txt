@@ -1,0 +1,8 @@
+    <div style="position: absolute; top: 612; left: 120;">
+        <img src="res/media-optical-dvd-video.png">
+        <img src="res/media-optical-audio.png" style="padding-left: 95;">
+        <img src="res/retroarch.webp" style="padding-left: 95;">
+        <img src="res/moonlight-aero.png" style="padding-left: 97;">
+        <img src="res/arrow-right.png" style="padding-left: 100;">
+        <a href="#" onclick="playMusic()" >sussy</a>
+    </div>

@@ -18,3 +18,6 @@ sudo cp configuration.nix /etc/nixos/configuration.nix
 sudo cp home-manager.nix /etc/nixos/home-manager.nix
 cp -r home/. ~
 cp -r home/.config  ~
+gtk-update-icon-theme
+sudo nixos-rebuild switch
+echo installation finished

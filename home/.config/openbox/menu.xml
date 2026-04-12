@@ -28,10 +28,10 @@
             </action> </item>
     <separator label="System" />
             <item label="DVD Player Menu"> <action name="Execute">
-                <execute>/home/ege/startmenu.sh</execute>
+                <execute>~/startmenu.sh</execute>
             </action> </item>
             <item label="Bouncing DVD Logo"> <action name="Execute">
-                    <execute>/home/ege/startss.sh</execute>
+                    <execute>~/startss.sh</execute>
             </action> </item>
             <item label="Thunar"> <action name="Execute">
                 <execute>thunar</execute>

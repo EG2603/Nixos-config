@@ -46,7 +46,7 @@
 	displayManager.startx.enable = true;
 };
 
-  environment.etc."X11/xinit/xinitrc".text = "
+  environment.etc."X11/xinit/xinitrc".text = ''
 #!/bin/sh
 setxkbmap tr
 prefix="/usr"
@@ -105,7 +105,7 @@ fi
 #    xwallpaper --center ~/bg-empty.png
 #    /home/ege/startmenu.sh &
 exec openbox
-";
+'';
 
   
 

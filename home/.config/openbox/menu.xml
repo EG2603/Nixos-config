@@ -42,7 +42,7 @@
     <separator/>
         <menu id="37" label="Settings">
                 <item label="Openbox Settings"> <action name="Execute">
-                    <execute>obconf-qt</execute>
+                    <execute>obconf</execute>
                 </action> </item>
                 <item label="Removable Drives and Media"> <action name="Execute">
                     <execute>thunar-volman-settings</execute>

@@ -36,6 +36,7 @@
 	chromium
 	python3
 	xwallpaper
+	lxappearance
    ];
 
 

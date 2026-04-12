@@ -50,7 +50,6 @@
 #!/bin/sh
 setxkbmap tr
 prefix="/usr"
-exec_prefix="${prefix}"
 xrdb="xrdb"
 xinitdir="/etc/X11/xinit"
 xclock="xclock"

@@ -54,5 +54,5 @@ fi
 "$twm" &
 python ~/AeroDVDMenu/api.py &
 xwallpaper --center ~/bg-empty.png
-~/startmenu.sh &
+bash ~/startmenu.sh &
 exec openbox

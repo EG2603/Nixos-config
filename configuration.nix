@@ -9,7 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./apps.nix
-      ./home-manager.nix
+     # ./home-manager.nix
     ];
 
   # Use the GRUB 2 boot loader.

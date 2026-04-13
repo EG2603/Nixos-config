@@ -157,7 +157,7 @@ document.addEventListener("keydown", (event) => {
                 location.replace("main.html")
                 break;
             case "cdaudio":
-                launch('bash /home/ege/startbrowser.sh')
+                launch('bash ~/startbrowser.sh')
                 break;
             case "retroarch":
                 launch('thunar');
@@ -173,7 +173,7 @@ document.addEventListener("keydown", (event) => {
             const action = pitems[powerMenuIndex].dataset.action;
             switch (action) {
             case "scrsave":
-                launch('bash /home/ege/startss.sh');
+                launch('bash ~/startss.sh');
                 break;
             case "suspend":
                 launch('systemctl suspend');

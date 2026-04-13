@@ -37,6 +37,8 @@
 	python3
 	xwallpaper
 	lxappearance
+	xbindkeys
+	libdvdcss
    ];
 
 

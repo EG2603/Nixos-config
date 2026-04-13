@@ -27,6 +27,7 @@
 	gvfs
 	ffmpeg
 	vlc
+	libvlc
 	fastfetch
 	openbox
 	obconf

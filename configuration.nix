@@ -28,7 +28,7 @@
 
 
 
-  services.getty.autologinOnce = true;
+  services.getty.autologinUser = "default";
 
   # Set your time zone.
   # time.timeZone = "Europe/Amsterdam";

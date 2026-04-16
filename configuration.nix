@@ -25,16 +25,15 @@
   # Configure network connections interactively with nmcli or nmtui.
   networking.networkmanager.enable = true;
 
-
-  systemd.services.start-gui = {
-  description = "startx";
-  wantedBy = [ "multi-user.target" ];
-  after = [ "network.target" ];
-  serviceConfig = {
-    Type = "oneshot";
-    ExecStart = "bash";
-  };
-};
+  systemd.user.services.start-gui = {
+  description = "Start GUI";
+  serviceConfig.PassEnvironment = "DISPLAY";
+  script = ''
+    sleep 2
+    startx
+  '';
+  wantedBy = [ "multi-user.target" ]; # starts after login
+}
 
 
 

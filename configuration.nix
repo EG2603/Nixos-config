@@ -26,6 +26,16 @@
   networking.networkmanager.enable = true;
 
 
+  systemd.services.start-gui = {
+  description = "startx";
+  wantedBy = [ "multi-user.target" ];
+  after = [ "network.target" ];
+  serviceConfig = {
+    Type = "oneshot";
+    ExecStart = "~/start.sh";
+  };
+};
+
 
 
   services.getty.autologinUser = "default";

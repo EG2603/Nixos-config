@@ -38,7 +38,9 @@
 
 
 
+  services.getty.autologinOnce = true;
   services.getty.autologinUser = "default";
+  users.defaultUserShell = pkgs.bash;
 
   # Set your time zone.
   # time.timeZone = "Europe/Amsterdam";

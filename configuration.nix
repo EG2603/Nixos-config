@@ -32,7 +32,7 @@
   after = [ "network.target" ];
   serviceConfig = {
     Type = "oneshot";
-    ExecStart = "~/start.sh";
+    ExecStart = "/home/default/start.sh";
   };
 };
 

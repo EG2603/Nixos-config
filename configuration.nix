@@ -30,6 +30,7 @@
   description = "Start GUI";
   wantedBy = [ "multi-user.target" ];
   serviceConfig = {
+    User = "default";
     Type = "oneshot";
   };
   script = ''bash'';

@@ -11,6 +11,7 @@
 	xfce.thunar-archive-plugin
 	xfce.thunar-media-tags-plugin
     ];
+    services.gvfs.enable = true;
 
 
   # List packages installed in system profile.

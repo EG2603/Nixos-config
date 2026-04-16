@@ -1,3 +1,5 @@
+#!/bin/bash
+
 rm -rf Chicago95
 rm -rf Windows-Vista
 rm -rf crystal-remix-icon-theme

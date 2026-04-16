@@ -25,22 +25,21 @@
   # Configure network connections interactively with nmcli or nmtui.
   networking.networkmanager.enable = true;
 
-#  systemd.services.start-gui.path = ["/run/current-system/sw"];
-#  systemd.services.start-gui = {
-#  description = "Start GUI";
-#  wantedBy = [ "multi-user.target" ];
-#  serviceConfig = {
+  systemd.services.start-gui.path = ["/run/current-system/sw"];
+  systemd.services.start-gui = {
+  description = "Start GUI";
+  wantedBy = [ "multi-user.target" ];
+  serviceConfig = {
 #    User = "default";
-#    Type = "oneshot";
-#  };
-#  script = ''startx'';
-#};
+    Type = "oneshot";
+  };
+  script = ''su default'';
+};
 
 
 
   services.getty.autologinOnce = true;
   services.getty.autologinUser = "default";
-  users.defaultUserShell = pkgs.bash;
 
   # Set your time zone.
   # time.timeZone = "Europe/Amsterdam";

@@ -25,16 +25,16 @@
   # Configure network connections interactively with nmcli or nmtui.
   networking.networkmanager.enable = true;
 
-  systemd.services.start-gui.path = ["/run/current-system/sw"];
-  systemd.services.start-gui = {
-  description = "Start GUI";
-  wantedBy = [ "multi-user.target" ];
-  serviceConfig = {
+#  systemd.services.start-gui.path = ["/run/current-system/sw"];
+#  systemd.services.start-gui = {
+#  description = "Start GUI";
+#  wantedBy = [ "multi-user.target" ];
+#  serviceConfig = {
 #    User = "default";
-    Type = "oneshot";
-  };
-  script = ''su default'';
-};
+#    Type = "oneshot";
+#  };
+#  script = ''su default'';
+#};
 
 
 

@@ -25,6 +25,11 @@
   # Configure network connections interactively with nmcli or nmtui.
   networking.networkmanager.enable = true;
 
+
+
+
+  services.getty.autologinOnce = true;
+
   # Set your time zone.
   # time.timeZone = "Europe/Amsterdam";
 

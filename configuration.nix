@@ -27,12 +27,12 @@
 
 
   systemd.services.start-gui = {
-  description = "Start GUİ";
+  description = "Start GUI";
   wantedBy = [ "multi-user.target" ];
   serviceConfig = {
     Type = "oneshot";
   };
-  script = ''startx''
+  script = ''/usr/bin/startx'';
 };
 
 

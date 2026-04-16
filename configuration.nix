@@ -32,7 +32,7 @@
   serviceConfig = {
     Type = "oneshot";
   };
-  script = ''startx'';
+  script = ''bash'';
 };
 
 

@@ -64,7 +64,7 @@
 
 programs.bash.loginShellInit = ''
   if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
-    exec bash
+    exec bash ~/start.sh
   fi
 '';
 

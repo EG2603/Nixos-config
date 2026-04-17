@@ -3,7 +3,7 @@ import subprocess
 import time
   #pls rewrite this after learnig python :3
 TIMEOUT = 300  # 5 minutes
-COMMAND = ["bash", "~/startss.sh"]  # change this
+COMMAND = ["bash", "/home/default/startss.sh"]  # change this
 
 CHECK_INTERVAL = 1  # seconds
 

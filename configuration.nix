@@ -61,6 +61,7 @@
 	enable = true;
 	displayManager.startx.enable = true;
 };
+  services.xserver.displayManager.startx.enable = true;
 
   environment.etc."X11/xinit/xinitrc".text = ''
 #!/bin/sh

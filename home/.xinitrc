@@ -53,6 +53,7 @@ fi
 
 "$twm" &
 python ~/AeroDVDMenu/api.py &
+python ~/wait_for_idle.py &
 xwallpaper --center ~/bg-empty.png
 bash ~/startmenu.sh &
 exec openbox

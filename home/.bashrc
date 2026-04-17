@@ -11,4 +11,4 @@ alias edit='msedit'
 alias vim='nvim'
 PS1='[\u@\h \W]\$ '
 # source ~/environment.sh
-~/start.sh
+#~/start.sh

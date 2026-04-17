@@ -59,9 +59,14 @@
   # Enable the X11 windowing system.
    services.xserver = {
 	enable = true;
-#	displayManager.startx.enable = true;
+	displayManager.startx.enable = true;
 };
-  services.xserver.displayManager.startx.enable = true;
+
+programs.bash.loginShellInit = ''
+  if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
+    exec startx
+  fi
+'';
 
   environment.etc."X11/xinit/xinitrc".text = ''
 #!/bin/sh

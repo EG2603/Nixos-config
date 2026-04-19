@@ -1,4 +1,4 @@
-#!/bin/bash
+#bash
 
 # code taken from https://github.com/WaylakeAnimations/waybar-quotes/blob/main/quote_picker.sh
 LINE=$(sed -n '4p' /etc/splashes/config.ini)

@@ -36,30 +36,14 @@
 #  script = ''su default'';
 #};
 
-  environment.systemPackages = [
-    (pkgs.writeShellScriptBin "select_splash" ''
-      #!/usr/bin/env bash
-      LINE=$(sed -n '4p' /etc/splashes/config.ini)
 
-grep '[^[:space:]]' /etc/splashes/splashes.txt > /etc/splashes/splashes_no_comments.txt
-sed -i '/^#/d' /etc/splashes/splashes_no_comments.txt
-
-PICKED=$((1 + $RANDOM % $(sed -n '$=' /etc/splashes/splashes_no_comments.txt)))
-
-
-
-head -$PICKED /etc/splashes/splashes_no_comments.txt | tail +$PICKED > /etc/splashes/picked.txt
-
-sed -i "${LINE}s~.*~$(sed 's/[\/&]/\\&/g' /etc/splashes/picked.txt)~" /etc/issue
-    '')
-  ];
 
   systemd.services.splash_select = {
   description = "Splash Text Selected";
   wantedBy = [ "multi-user.target" ];
   serviceConfig = {
   Type = "oneshot";
-  ExecStart = "${pkgs.writeShellScriptBin "select_splash" "..."}";
+  ExecStart = "/usr/bin/splash_select";
   RemainAfterExit = false;
   };
   };

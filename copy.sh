@@ -19,6 +19,7 @@ sudo cp -r Chicago95/Cursors/Chicago95_Standard_Cursors ~/.local/share/icons
 sudo cp splash/bin/select_splash /usr/bin
 sudo cp -r splash/splashes /etc
 sudo chmod +x /usr/bin/select_splash
+sudo chmod +w /etc/issue
 #------------------------------------------------------
 sudo cp apps.nix /etc/nixos/apps.nix
 sudo cp configuration.nix /etc/nixos/configuration.nix

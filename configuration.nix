@@ -43,7 +43,7 @@
   wantedBy = [ "multi-user.target" ];
   serviceConfig = {
   Type = "oneshot";
-  ExecStart = "/usr/bin/splash_select";
+  ExecStart = "/usr/bin/select_splash";
   RemainAfterExit = false;
   };
   };

@@ -1,0 +1,52 @@
+@font-face {
+    font-family: 'seven-segment';
+    src: url('res/fonts/Seven\ Segment.ttf');
+}
+@font-face {
+    font-family: 'Segoe UI';
+    src: url('dvd_res/fonts/segoeui.ttf');
+}
+@font-face {
+    font-family: 'frutiger';
+    src: url(res/fonts/Frutiger.ttf);
+}
+@font-face {
+    font-family: 'comic sans';
+    src: url(res/fonts/comic.ttf);
+}
+body{
+    background-image: url(res/bg.png);
+    /*cursor: none;*/
+}
+/*--------*/
+#clock{
+    font-family: seven-segment;
+    font-size: 169;
+    position: absolute;
+    top: 100; width: 1910;
+    text-align: center;
+    color: black;
+    transition: top 0.5s ease-out;
+    text-shadow: 2px 2px 2px rgb(134, 134, 134);
+}
+
+.blink {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+/*--------*/
+#cursor{
+animation: blink 3s infinite ease-in-out;
+-webkit-box-reflect: below 30px linear-gradient(to bottom, rgba(0,0,0,0.0)50%, rgba(0,0,0,0.7));;
+}
+@keyframes blink {
+  0%   { opacity: 1; }
+  50%  { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+#cursor.frame2{
+
+}
+#menu{
+    -webkit-box-reflect: below 30px linear-gradient(to bottom, rgba(0,0,0,0.0)50%, rgba(0,0,0,0.7));;
+}

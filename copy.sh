@@ -17,7 +17,7 @@ sudo cp -r Chicago95/Cursors/Chicago95_Standard_Cursors ~/.local/share/icons
 #------------------------------------------------------
 #Install the splash text program:
 sudo cp splash/bin/select_splash /usr/bin
-
+sudo cp -r splash/splashes /etc
 #------------------------------------------------------
 sudo cp apps.nix /etc/nixos/apps.nix
 sudo cp configuration.nix /etc/nixos/configuration.nix

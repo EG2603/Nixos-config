@@ -1,0 +1,45 @@
+<html>
+<head>
+    <title>N/A</title>
+    <link rel="stylesheet" href="mainstyle.css">
+</head>
+<body>
+    <div id="clock" class="depth">never gonna give you up</div>
+<img id="cursor" src="res/cursor.svg" style="position: absolute; top: 450; left: 810; height: 300px;">
+in developement (nonfunctional)
+    <div id="menu" style="position: absolute; top: 450; left: 120;">
+        <img class="menu-item" data-action="dvdvideo" src="res/media-optical-dvd-video.png" onclick="launch('vlc dvd:///dev/sr0 --fullscreen')">
+        <img class="menu-item" data-action="cdaudio" src="res/media-optical-audio.png" style="margin-left: 95;" onclick="launch('vlc cdda:///dev/sr0')">
+        <img class="menu-item" data-action="retroarch" src="res/retroarch.webp" style="margin-left: 95;" onclick="launch('retroarch')">
+        <img class="menu-item" data-action="moonlight" src="res/moonlight-aero.png" style="margin-left: 97;" onclick="launch('moonlight')">
+        <img class="menu-item" data-action="next-page" src="res/arrow-right.png" style="margin-left: 100;">
+    </div>
+
+
+
+
+
+
+    <script>
+	function updateClock() {
+    	const now = new Date();
+    	const hours = String(now.getHours()).padStart(2, '0');
+    	const minutes = String(now.getMinutes()).padStart(2, '0');
+
+		let colon = now.getSeconds() % 2 === 0 ? ":" : "<span class='blink'>:</span>";
+
+    	document.getElementById('clock').innerHTML = `${hours}${colon}${minutes}`;
+		}
+
+    	updateClock();                   // set immediately
+    	setInterval(updateClock, 1000);  // update every second
+    </script>
+    <script>
+    function blinkCursor() {
+        document.getElementById("slideBox").classList.remove("visible");
+    }
+    blinkCursor();                   // set immediately
+    setInterval(blinkCursor, 2500);  // update every second
+    </script>
+</body>
+</html>

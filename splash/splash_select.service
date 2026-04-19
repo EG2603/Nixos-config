@@ -1,0 +1,10 @@
+[Unit]
+Description=Splash Text Selected
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/select_splash
+RemainAfterExit=no
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# code taken from https://github.com/WaylakeAnimations/waybar-quotes/blob/main/quote_picker.sh
+LINE=$(sed -n '4p' /etc/splashes/config.ini)
+
+grep '[^[:space:]]' /etc/splashes/splashes.txt > /etc/splashes/splashes_no_comments.txt
+sed -i '/^#/d' /etc/splashes/splashes_no_comments.txt
+
+PICKED=$((1 + $RANDOM % $(sed -n '$=' /etc/splashes/splashes_no_comments.txt)))
+
+
+
+head -$PICKED /etc/splashes/splashes_no_comments.txt | tail +$PICKED > /etc/splashes/picked.txt
+
+sed -i "${LINE}s~.*~$(sed 's/[\/&]/\\&/g' /etc/splashes/picked.txt)~" /etc/issue
+
+#if [ $'(cat /etc/splashes/picked.txt)' == '' ] ;
+#then
+#    bash $0
+#fi

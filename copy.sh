@@ -15,6 +15,10 @@ sudo cp -r Chicago95/Theme/Chicago95 ~/.local/share/themes
 sudo cp -r Chicago95/Icons/Chicago95 ~/.local/share/icons
 sudo cp -r Chicago95/Cursors/Chicago95_Standard_Cursors ~/.local/share/icons
 #------------------------------------------------------
+#Install the splash text program:
+sudo cp splash/bin/select_splash /usr/bin
+
+#------------------------------------------------------
 sudo cp apps.nix /etc/nixos/apps.nix
 sudo cp configuration.nix /etc/nixos/configuration.nix
 sudo cp home-manager.nix /etc/nixos/home-manager.nix

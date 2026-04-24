@@ -1,2 +1,2 @@
 pkill -f -- "chromium"
-chromium "~/AeroDVDMenu/main.html" --kiosk --allow-file-access-from-files
+chromium "~/AeroDVDMenu2/page1.html" --kiosk --allow-file-access-from-files

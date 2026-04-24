@@ -13,7 +13,7 @@
 	xfce.thunar-media-tags-plugin
     ];
     services.gvfs.enable = true;
-    services.playerctld.enable = true;
+    #services.playerctld.enable = true;
 
 
   # List packages installed in system profile.
@@ -44,7 +44,7 @@
 	xbindkeys
 	libdvdcss
 	xprintidle
-#	playerctl
+	#playerctl
    ];
 
 

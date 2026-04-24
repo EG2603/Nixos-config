@@ -17,6 +17,7 @@
 body{
     background-image: url(res/bg.png);
     /*cursor: none;*/
+    overflow: clip;
 }
 /*--------*/
 #clock{
@@ -37,16 +38,59 @@ body{
 /*--------*/
 #cursor{
 animation: blink 3s infinite ease-in-out;
--webkit-box-reflect: below 30px linear-gradient(to bottom, rgba(0,0,0,0.0)50%, rgba(0,0,0,0.7));;
+-webkit-box-reflect: below 30px linear-gradient(to bottom, rgba(0,0,0,0.0)60%, rgba(0,0,0,0.5));;
+transition: height 0.05s;
+height: 300px;
+align-self: center;
+justify-self: center;
+place-self: center;
 }
 @keyframes blink {
   0%   { opacity: 1; }
   50%  { opacity: 0.6; }
   100% { opacity: 1; }
 }
-#cursor.frame2{
-
+#cursor.smol{
+height: 260px;
+-webkit-box-reflect: below 50px linear-gradient(to bottom, rgba(0,0,0,0.0)60%, rgba(0,0,0,0.5));;
+transition: height 0.1s;
 }
 #menu{
-    -webkit-box-reflect: below 30px linear-gradient(to bottom, rgba(0,0,0,0.0)50%, rgba(0,0,0,0.7));;
+    -webkit-box-reflect: below 65px linear-gradient(to bottom, rgba(0,0,0,0.0)70%, rgba(0,0,0,0.5));;
+    transition: left 0.3s;
+    position: absolute;
+    top: 472;
+    left: 720;
+    width: 1920;
+    height: 260;
+    align-items: flex-end;
+    align-content: flex-end;
+}
+#menu.opt1{
+    left: 832;
+}
+#menu.opt2{
+    left: 583;
+}
+#menu.opt3{
+    left: 334;
+}
+#menu.opt4{
+    left: 83;
+}
+#menu.opt5{
+    left: -171;
+}
+
+
+.menu-item{
+    height: 150;
+    transition: height 0.3s;
+    /*overflow: hidden;*/
+    
+}
+.menu-item.selected {
+    /*background-image: url(res/selector.png);*/
+    color: white;
+    height: 256;
 }

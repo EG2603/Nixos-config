@@ -5,14 +5,19 @@
 </head>
 <body>
     <div id="clock" class="depth">never gonna give you up</div>
-<img id="cursor" src="res/cursor.svg" style="position: absolute; top: 450; left: 810; height: 300px;">
-in developement (nonfunctional)
-    <div id="menu" style="position: absolute; top: 450; left: 120;">
+<div style="display: flex; height: 300; width: 300; position: absolute; top: 450; left: 810; justify-content: center;">
+<img id="cursor" src="res/cursor.svg" style="z-index: 3;">
+</div>
+in developement
+    <div id="menu" class="opt1">
         <img class="menu-item" data-action="dvdvideo" src="res/media-optical-dvd-video.png" onclick="launch('vlc dvd:///dev/sr0 --fullscreen')">
         <img class="menu-item" data-action="cdaudio" src="res/media-optical-audio.png" style="margin-left: 95;" onclick="launch('vlc cdda:///dev/sr0')">
-        <img class="menu-item" data-action="retroarch" src="res/retroarch.webp" style="margin-left: 95;" onclick="launch('retroarch')">
+        <img class="menu-item" data-action="retroarch" src="res/placeholder.svg" style="margin-left: 95;" onclick="launch('retroarch')">
+        <img class="menu-item" data-action="moonlight" src="res/placeholder.svg" style="margin-left: 97;" onclick="launch('moonlight')">
+        <img class="menu-item" data-action="next-page" src="res/placeholder.svg" style="margin-left: 100;">
+        <!--   <img class="menu-item" data-action="retroarch" src="res/retroarch.webp" style="margin-left: 95;" onclick="launch('retroarch')">
         <img class="menu-item" data-action="moonlight" src="res/moonlight-aero.png" style="margin-left: 97;" onclick="launch('moonlight')">
-        <img class="menu-item" data-action="next-page" src="res/arrow-right.png" style="margin-left: 100;">
+        <img class="menu-item" data-action="next-page" src="res/arrow-right.png" style="margin-left: 100;">   -->
     </div>
 
 
@@ -34,12 +39,231 @@ in developement (nonfunctional)
     	updateClock();                   // set immediately
     	setInterval(updateClock, 1000);  // update every second
     </script>
-    <script>
+    <!--<script>
     function blinkCursor() {
         document.getElementById("slideBox").classList.remove("visible");
     }
     blinkCursor();                   // set immediately
     setInterval(blinkCursor, 2500);  // update every second
-    </script>
+    </script>-->
+
+      <script>
+    async function launch(cmd) {
+      await fetch('http://localhost:8899/run?cmd=' + encodeURIComponent(cmd));
+    }
+  </script>
+
+  <script>
+    function cursorAnim () {
+        setTimeout(() => {
+            document.getElementById("cursor").classList.add("smol");
+        }, 100);
+        setTimeout(() => {
+            document.getElementById("cursor").classList.remove("smol");
+        }, 200);
+    }
+  </script>
+
+
+
+
+
+
+
+<script>
+let selectedIndex = 0;
+let powerMenuIndex = 0;
+let mode = 0;
+let lowertextcontrols = 0;
+
+function updateMenuHighlight() {
+    const items = document.querySelectorAll(".menu-item");
+    const pitems = document.querySelectorAll(".power-menu-item");
+
+    items.forEach((item, index) => {
+        item.classList.toggle("selected", index === selectedIndex);
+    });
+    pitems.forEach((pitem, pindex) => {
+        pitem.classList.toggle("selected", pindex === powerMenuIndex);
+    });
+}
+
+document.addEventListener("keydown", (event) => {
+    const items = document.querySelectorAll(".menu-item");
+    const pitems = document.querySelectorAll(".power-menu-item");
+
+
+    if (event.key === "Escape") {
+        if (mode === 0) {
+        mode = 1;
+        document.getElementById("slideBox").classList.add("visible");
+        document.getElementById("clock").classList.add("raised");
+        document.getElementById("selected-text").classList.add("lowered");
+        setTimeout(function() {
+            lowertextcontrols = 1;
+            const action = pitems[powerMenuIndex].dataset.action;
+            switch (action) {
+            case "scrsave":
+                setText('Start The DVD Logo Screensaver');
+                break;
+            case "suspend":
+                setText('Make the pc eepy');
+                break;
+            case "reboot":
+                setText('Restart The PC');
+                break;
+            case "poweroff":
+                setText('Shut Down The PC');
+                break;
+            }
+        }, 500)
+        } else {
+        lowertextcontrols = 0;
+        mode = 0;
+            document.getElementById("slideBox").classList.remove("visible");
+            document.getElementById("clock").classList.remove("raised");
+            document.getElementById("selected-text").classList.remove("lowered");
+        }
+        updateMenuHighlight();
+    }
+
+    if (event.key === "ArrowRight") {
+        if (mode === 0) {
+        selectedIndex = (selectedIndex + 1) % items.length;
+        updateMenuHighlight();
+        }
+    }
+
+    if (event.key === "ArrowLeft") {
+        if (mode === 0) {
+        selectedIndex = (selectedIndex - 1 + items.length) % items.length;
+        updateMenuHighlight();
+        }
+    }
+        if (event.key === "ArrowDown") {
+        if (mode === 1) {
+        powerMenuIndex = (powerMenuIndex + 1) % pitems.length;
+        updateMenuHighlight();
+        }
+    }
+
+    if (event.key === "ArrowUp") {
+        if (mode === 1) {
+        powerMenuIndex = (powerMenuIndex - 1 + pitems.length) % pitems.length;
+        updateMenuHighlight();
+        }
+    }
+
+    if (event.key === "Enter") {
+        if (mode === 0) {
+        const action = items[selectedIndex].dataset.action;
+        
+        // Handle the selected action
+        switch (action) {
+            case "dvdvideo":
+                launch('vlc dvd:///dev/sr0 --fullscreen');
+                break;
+            case "cdaudio":
+                launch('vlc cdda:///dev/sr0');
+                break;
+            case "retroarch":
+                launch('retroarch');
+                break;
+            case "moonlight":
+                launch('moonlight');
+                break;
+            case "next-page":
+                location.replace("page2.html")
+                break;
+            }
+        } else { 
+            const action = pitems[powerMenuIndex].dataset.action;
+            switch (action) {
+            case "scrsave":
+                launch('bash ~/startss.sh');
+                break;
+            case "suspend":
+                launch('systemctl suspend');
+                break;
+            case "reboot":
+                launch('reboot');
+                break;
+            case "poweroff":
+                launch('poweroff');
+                break;
+            }
+        }
+    }
+			const action = items[selectedIndex].dataset.action;
+            cursorAnim();
+
+            if (mode === 0) {
+		    switch (action) {
+            case "dvdvideo":
+                //setText('Play DVD');
+                document.getElementById("menu").classList.add("opt1");
+                document.getElementById("menu").classList.remove("opt2");
+                document.getElementById("menu").classList.remove("opt3");
+                document.getElementById("menu").classList.remove("opt4");
+                document.getElementById("menu").classList.remove("opt5");
+                break;
+            case "cdaudio":
+                //setText('Play CD');
+                document.getElementById("menu").classList.remove("opt1");
+                document.getElementById("menu").classList.add("opt2");
+                document.getElementById("menu").classList.remove("opt3");
+                document.getElementById("menu").classList.remove("opt4");
+                document.getElementById("menu").classList.remove("opt5");
+                break;
+            case "retroarch":
+                //setText('Retroarch');
+                document.getElementById("menu").classList.remove("opt1");
+                document.getElementById("menu").classList.remove("opt2");
+                document.getElementById("menu").classList.add("opt3");
+                document.getElementById("menu").classList.remove("opt4");
+                document.getElementById("menu").classList.remove("opt5");
+                break;
+            case "moonlight":
+                //setText('Moonlight');
+                document.getElementById("menu").classList.remove("opt1");
+                document.getElementById("menu").classList.remove("opt2");
+                document.getElementById("menu").classList.remove("opt3");
+                document.getElementById("menu").classList.add("opt4");
+                document.getElementById("menu").classList.remove("opt5");
+                break;
+            case "next-page":
+                //setText('Next Page');
+                document.getElementById("menu").classList.remove("opt1");
+                document.getElementById("menu").classList.remove("opt2");
+                document.getElementById("menu").classList.remove("opt3");
+                document.getElementById("menu").classList.remove("opt4");
+                document.getElementById("menu").classList.add("opt5");
+                break;
+            }
+        } else {
+            if (lowertextcontrols === 1) {
+            const action = pitems[powerMenuIndex].dataset.action;
+            switch (action) {
+            case "scrsave":
+                setText('Start The DVD Logo Screensaver');
+                break;
+            case "suspend":
+                setText('Make the pc eepy');
+                break;
+            case "reboot":
+                setText('Restart The PC');
+                break;
+            case "poweroff":
+                setText('Shut Down The PC');
+                break;
+            }
+        }
+        }
+});
+
+
+updateMenuHighlight();
+//updateText();
+</script>
 </body>
 </html>

@@ -44,7 +44,7 @@
 	xbindkeys
 	libdvdcss
 	xprintidle
-	playerctl
+#	playerctl
    ];
 
 
